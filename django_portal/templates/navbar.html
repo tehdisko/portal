@@ -1,0 +1,33 @@
+<nav class="navbar navbar-dark navbar-expand-md sticky-top bg-dark flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="/">OSPZ Portal</a>
+  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+  </button>
+  <form class="container-fluid p-0" method="GET" action="/search">
+    <div class="input-group">
+      <input type="text" name="q" class="form-control" placeholder="Search" >
+      <div class="input-group-append">
+      <button class="btn btn-outline-secondary searchButton" type="submit"> 
+        <i class="fa fa-search"></i>
+      </button>
+      </div>
+    </div>
+  </form>
+  <ul class="navbar-nav px-3">
+			{% if user.is_superuser %}
+			<li class="nav-item text-nowrap">
+				<a class="nav-link" href="/admin/">Admin</a>
+			</li>
+			{% endif %}
+			{% if user.is_authenticated %}
+    		<li class="nav-item text-nowrap">
+				<a class="nav-link" href="/logout/">Logout</a>
+			</li>
+			{% elif not user.is_authenticated %}
+			<li class="nav-item text-nowrap">
+				<a class="nav-link" href="/login/">Login</a>
+			</li>
+   			{% endif %}
+  </ul>
+</nav>
+

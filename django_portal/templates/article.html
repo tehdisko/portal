@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load markdownify %}
+{% block content %}
+<!-- <div style="min-height: 80vh;"> -->
+	<main role="main" class="container-fluid">
+		
+		<div>
+			<h1>{{object.title}} </h1> <a class="badge badge-secondary" href="{{object.get_update_url}}" role="button">Edit article</a> 
+		</div>
+		<div>
+			<p class="small text-muted">{{object.author}} {{object.data_created}} </p>
+		</div>
+		<div>
+			<p>
+			{% for tag in object.tags.all %}
+			<a href="#" class="badge badge-info">{{ tag.name }}</a>
+            {% endfor %}
+			</p>
+		</div>
+		<div>
+			
+			<p>{{ object.text|markdownify }}</p>
+		</div>
+	</main>
+<!-- </div> -->
+{% endblock %}

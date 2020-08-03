@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+  {% load static %}
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="{% static "css/bootstrap.min.css"%}" rel="stylesheet" >
+    <link href="{% static "css/signin.css"%}" rel="stylesheet" >
+
+</head>
+
+<body class="text-center">
+	<form class="form-signin" method="POST">  {% csrf_token %}
+		<img class="mb-4 rounded" src="{% static "img/OSPZ.jpg"%}" alt="" width="72" height="72">
+	<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+	<label  class="sr-only" for="username">Username</label>
+	<input type="username" class="form-control" id="username" name="username" required autofocus type="text" value="" placeholder="User name">
+	<label class="sr-only" for="password">Password</label>
+	<input type="password" class="form-control" id="password" name="password" required type="password" value="" placeholder="Password">
+	
+
+	<button class="btn btn-lg btn-primary btn-block" type="submit"> Sign in </button>
+
+	</form>
+  </body> 
+</html>

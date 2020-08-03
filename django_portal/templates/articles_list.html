@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load markdownify %} 
+
+{% block content %}
+{% for instanсe in articles %}
+	<div class="row mb-1">
+
+	 <div class="col">
+	    <div class="card">
+		    <div class="card-body">
+			    <div class="article-header">
+				    <h4 class="card-title">{{instanсe.title}}</h4>
+				   <!--
+	      			 <span class="article-badge">
+					    <a class="badge badge-pill badge-primary" href="/search?c={{ instance.category }}" role="button">{{instanсe.category}}</a>
+				    </span>
+				   -->
+				   
+		    {% for tag in instanсe.tags.all %}
+		 <span class="article-badge">
+			<a class="badge badge-pill badge-info"  href="/search?t={{ tag.name }}" >{{ tag.name }}</a>
+				    </span>
+		    {% endfor %}
+			    </div>
+			    <p class="card-subtitle text-muted">Posted by {{instanсe.author}} on {{instanсe.data_created}} <a class="badge badge-secondary" href="{{instanсe.get_update_url}}" role="button">Edit</a> <a class="badge badge-danger" href="{{instanсe.get_delete_url}}" role="button">Delete</a>
+
+			    </p>
+<!--			    <p class= "text-muted">Tags: 
+		    {% for tag in instanсe.tags.all %}
+			<a href="/search?t={{ tag.name }}" >{{ tag.name }}</a>
+		    {% endfor %}
+			    </p>
+-->
+		    <p class="card-text"> {{instanсe.description}} 
+
+		    <a class="badge badge-light" href="{{instanсe.get_absolute_url}}" role="button">View details »</a>
+		    </p>
+		    </div>
+	    </div>
+	 </div> 
+	  	
+
+	</div>
+{% endfor %}
+{% endblock %}

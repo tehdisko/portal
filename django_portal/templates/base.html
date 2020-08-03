@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+  {% load static %}
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>KB</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/dashboard/">
+
+    <!-- Bootstrap core CSS -->
+    <!-- CSS only -->
+    <link href="{% static "css/bootstrap.css"%}" rel="stylesheet" >
+
+    <!-- Favicons -->
+    <meta name="theme-color" content="#563d7c">
+
+    <!-- Custom styles -->
+      <style>
+        .bd-placeholder-img {
+          font-size: 1.125rem;
+          text-anchor: middle;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+        }
+
+        @media (min-width: 768px) {
+          .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+          }
+        }
+
+        .columns {
+          column-count: 2;
+        }
+
+        .editor-toolbar.fullscreen {
+            z-index: 1090 !important;
+        }
+	.article-header{
+		display: flex;
+		align-items: flex-end;
+		flex-wrap: wrap;
+
+	}
+	.article-badge{
+		 margin: 0 0px 0px 5px;
+		     height: 40px;
+
+	}
+      </style>
+      <link href = "{% static "css/dashboard.css" %}" rel="stylesheet">
+      <link href = "{% static "css/bootstrap-tagsinput.css" %}" rel="stylesheet" > 
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+      <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+  </head>
+
+  <body>
+    {% include 'navbar.html' %}
+    <div class="container-fluid" style="padding-top: 30px;">
+      <div class="row">
+        {% include 'sidebar.html' %}
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+          {% block content %}
+            replace me
+          {% endblock %}
+        </main>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="{% static "js/bootstrap.bundle.min.js" %}" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script> -->
+    <script src="{% static "js/bootstrap-tagsinput.min.js" %}"></script>
+    <!-- <script src="{% static "js/bootstrap-tagsinput-angular.min.js" %}"></script> -->
+    <script src="{% static "js/dashboard.js" %}"></script>
+  </body> 
+</html>
