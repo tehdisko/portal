@@ -27,21 +27,22 @@ from kb.views import (
     ArticleDeleteView,
     ArticleSearchView,
     ArticleTagSearchView,
-    CommingSoonView
+    # CommingSoonView
 )
 
-from kb.views import login_view, logout_view
+from kb.views import login_view, logout_view, soon_view
 urlpatterns = [
     path('login/', login_view),
     path('logout/', logout_view), 
     path('', ArticleListView.as_view(), name = 'article-list'),
     path('search/', ArticleSearchView.as_view(), name = 'article-list'),
     path('article/<int:pk>/', ArticleDetailView.as_view(), name = "article-detail"),
-    path('soon/',CommingSoonView.as_view(), name = "soon"),
+   # path('soon/',CommingSoonView.as_view(), name = "soon"),
     path('create/', ArticleCreateView.as_view(), name = "article-create"),
     path('article/<int:pk>/update/', ArticleUpdateView.as_view(), name = "article-update"),
     path('article/<int:pk>/delete/', ArticleDeleteView.as_view(), name = "article-delete"),
     path('admin/', admin.site.urls),
+    path('soon/', soon_view, name = 'soon'),
 ]
 
 if settings.DEBUG:

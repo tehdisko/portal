@@ -120,11 +120,11 @@ class ArticleTagSearchView(LoginRequiredMixin, ListView):
 		return Article.objects.filter(tags__name__in=q) 
 
 
-class CommingSoonView(LoginRequiredMixin, DetailView):
-    template_name = 'comming_soon.html'
-    login_url = '/login/'
-    redirect_field_name = ''
-
+# class CommingSoonView(LoginRequiredMixin, DetailView):
+#     template_name = 'comming_soon.html'
+#     login_url = '/login/'
+#     redirect_field_name = ''
+# 
 
 def login_view(request):
 	if request.user.is_authenticated:
@@ -140,6 +140,9 @@ def login_view(request):
 			login(request, user)
 			return redirect('/')
 
+
+def soon_view(request, *args, **kwargs):
+    return render(request, "coming_soon.html", {})
 
 def logout_view(request):
     logout(request)
