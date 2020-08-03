@@ -1,0 +1,11 @@
+body {
+	padding-top: 4.5rem;
+}
+
+.book-item .book-cover {
+	width: 100%;
+}
+
+.book-links a {
+	margin-right: 1rem;
+}

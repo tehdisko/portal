@@ -15,7 +15,35 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import url, include
+from django.conf.urls.static import static
+from django.conf import settings
 
+from kb.views import (
+    ArticleListView,
+    ArticleDetailView,
+    ArticleCreateView,
+    ArticleUpdateView,
+    ArticleDeleteView,
+    ArticleSearchView,
+    ArticleTagSearchView,
+    CommingSoonView
+)
+
+from kb.views import login_view, logout_view
 urlpatterns = [
+    path('login/', login_view),
+    path('logout/', logout_view), 
+    path('', ArticleListView.as_view(), name = 'article-list'),
+    path('search/', ArticleSearchView.as_view(), name = 'article-list'),
+    path('article/<int:pk>/', ArticleDetailView.as_view(), name = "article-detail"),
+    path('soon/',CommingSoonView.as_view(), name = "soon"),
+    path('create/', ArticleCreateView.as_view(), name = "article-create"),
+    path('article/<int:pk>/update/', ArticleUpdateView.as_view(), name = "article-update"),
+    path('article/<int:pk>/delete/', ArticleDeleteView.as_view(), name = "article-delete"),
     path('admin/', admin.site.urls),
 ]
+
+if settings.DEBUG:
+    # static files (images, css, javascript, etc.)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
