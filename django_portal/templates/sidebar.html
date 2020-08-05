@@ -65,10 +65,9 @@
           </a>
         </h6>
         {% block content_kb_sidebar_tags %}
-      <div>
-	    	{% for key,value in tags_cloud.items %}
-            <a class="nav-link" href="/search?t={{ key }}">
-              <span data-feather="tag"></span>
+      <div style="padding-left:20px;padding-right:20px;">
+          {% for key,value in tags_cloud.items %}
+            <a class="badge badge-info" href="/search?t={{ key }}">
               {{key}}({{value}})
             </a>
 	        {% endfor %}

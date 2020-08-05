@@ -8,20 +8,17 @@
 	 <div class="col">
 	    <div class="card">
 		    <div class="card-body">
-			    <div class="article-header">
-				    <h4 class="card-title">{{instanсe.title}}</h4>
+			    <div class="card-title"><h5 style="margin-block-start: 0em; margin-block-end: 0em;"><a class="stretched-link" style="position: relative; color:#212529;" href="{{instanсe.get_absolute_url}}" role="button">{{instanсe.title}}</a>
+</h5>
 				   <!--
 	      			 <span class="article-badge">
 					    <a class="badge badge-pill badge-primary" href="/search?c={{ instance.category }}" role="button">{{instanсe.category}}</a>
 				    </span>
 				   -->
-				   
 		    {% for tag in instanсe.tags.all %}
-		 <span class="article-badge">
 			<a class="badge badge-pill badge-info"  href="/search?t={{ tag.name }}" >{{ tag.name }}</a>
-				    </span>
 		    {% endfor %}
-			    </div>
+				    </div>
 			    <p class="card-subtitle text-muted">Posted by {{instanсe.author}} on {{instanсe.data_created}} <a class="badge badge-secondary" href="{{instanсe.get_update_url}}" role="button">Edit</a> <a class="badge badge-danger" href="{{instanсe.get_delete_url}}" role="button">Delete</a>
 
 			    </p>
@@ -33,7 +30,6 @@
 -->
 		    <p class="card-text"> {{instanсe.description}} 
 
-		    <a class="badge badge-light" href="{{instanсe.get_absolute_url}}" role="button">View details »</a>
 		    </p>
 		    </div>
 	    </div>
