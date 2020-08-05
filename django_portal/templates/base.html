@@ -6,16 +6,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>KB</title>
-
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/dashboard/">
-
-    <!-- Bootstrap core CSS -->
-    <!-- CSS only -->
     <link href="{% static "css/bootstrap.css"%}" rel="stylesheet" >
-
-    <!-- Favicons -->
     <meta name="theme-color" content="#563d7c">
-
     <!-- Custom styles -->
       <style>
         .bd-placeholder-img {
@@ -51,6 +44,7 @@
 		     height: 40px;
 
 	}
+	
       </style>
       <link href = "{% static "css/dashboard.css" %}" rel="stylesheet">
       <link href = "{% static "css/bootstrap-tagsinput.css" %}" rel="stylesheet" > 
@@ -63,14 +57,14 @@
   <body>
     {% include 'navbar.html' %}
     <div class="container-fluid" style="padding-top: 30px;">
-      <div class="row">
+	    <div class="row">
         {% include 'sidebar.html' %}
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
           {% block content %}
             replace me
           {% endblock %}
         </main>
-      </div>
+	</div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="{% static "js/bootstrap.bundle.min.js" %}" ></script>

@@ -18,10 +18,12 @@
 	<input type="username" class="form-control" id="username" name="username" required autofocus type="text" value="" placeholder="User name">
 	<label class="sr-only" for="password">Password</label>
 	<input type="password" class="form-control" id="password" name="password" required type="password" value="" placeholder="Password">
-	
-
+	{% for message in messages %}
+	<div class="alert alert-info" role="alert">
+			{{ message  }}
+	</div>
+	{% endfor %}		    
 	<button class="btn btn-lg btn-primary btn-block" type="submit"> Sign in </button>
-
 	</form>
   </body> 
 </html>

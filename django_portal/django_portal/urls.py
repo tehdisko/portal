@@ -32,7 +32,7 @@ from kb.views import (
 
 from kb.views import login_view, logout_view, soon_view
 urlpatterns = [
-    path('login/', login_view),
+    path('login/', login_view, name='login'),
     path('logout/', logout_view), 
     path('', ArticleListView.as_view(), name = 'article-list'),
     path('search/', ArticleSearchView.as_view(), name = 'article-list'),

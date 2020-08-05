@@ -15,6 +15,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.postgres.search import SearchVector
+from django.contrib import messages
 from taggit.models import Tag
 
 
@@ -127,20 +128,20 @@ class ArticleTagSearchView(LoginRequiredMixin, ListView):
 # 
 
 def login_view(request):
-	if request.user.is_authenticated:
-		return redirect('/')
-	if request.method == "GET":
-		return render(request, "login.html", {})
-	
-	if request.method == "POST":
-		username = request.POST['username']
-		password = request.POST['password']
-		user = authenticate(request, username=username, password=password)
-		if user is not None:
-			login(request, user)
-			return redirect('/')
-
-
+    if request.user.is_authenticated:
+        return redirect('/')
+    if request.method == "GET":
+        return render(request, "login.html", {})
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('/')
+        else:
+            messages.error(request,'username or password not correct')
+        return redirect('login')
 def soon_view(request, *args, **kwargs):
     return render(request, "coming_soon.html", {})
 
