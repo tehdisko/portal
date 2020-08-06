@@ -29,6 +29,23 @@ class ArticleCreateView(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
+    def get_context_data(self, **kwargs):
+        articles = Article.objects.all()
+        tags = Tag.objects.all()
+        tags_cloud = {}
+        for tag in tags:
+            counter = 0
+            for article in articles:
+                if tag.name in article.tags.names():
+                    counter+=1
+            if counter !=0:
+                tags_cloud[tag.name] = counter
+        print(tags_cloud)
+        tags_cloud_sorted = {k: v for k, v in sorted(tags_cloud.items(), key=lambda item: item[1],reverse=True)}
+        context = super(CreateView, self).get_context_data(**kwargs)
+        context['tags_cloud'] = tags_cloud_sorted
+        return context
+
 class ArticleUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'article_create.html'
     form_class = ArticleCreateForm
@@ -39,6 +56,22 @@ class ArticleUpdateView(LoginRequiredMixin, UpdateView):
         id_ = self.kwargs.get("pk")
         return get_object_or_404(Article, id=id_)
 
+    def get_context_data(self, **kwargs):
+        articles = Article.objects.all()
+        tags = Tag.objects.all()
+        tags_cloud = {}
+        for tag in tags:
+            counter = 0
+            for article in articles:
+                if tag.name in article.tags.names():
+                    counter+=1
+            if counter !=0:
+                tags_cloud[tag.name] = counter
+        print(tags_cloud)
+        tags_cloud_sorted = {k: v for k, v in sorted(tags_cloud.items(), key=lambda item: item[1],reverse=True)}
+        context = super(UpdateView, self).get_context_data(**kwargs)
+        context['tags_cloud'] = tags_cloud_sorted
+        return context
 
 class ArticleListView(LoginRequiredMixin, View):
     login_url = '/login/'
@@ -64,10 +97,30 @@ class ArticleListView(LoginRequiredMixin, View):
 
 class ArticleDetailView(LoginRequiredMixin, DetailView):
     template_name = 'article.html'
-    queryset = Article.objects.all()
+    #queryset = Article.objects.all()
     login_url = '/login/'
     redirect_field_name = ''
 
+    def get(self, request, *args, **kwargs):
+        articles = Article.objects.all()
+        tags = Tag.objects.all()
+        tags_cloud = {}
+        for tag in tags:
+            counter = 0
+            for article in articles:
+                if tag.name in article.tags.names():
+                    counter+=1
+            if counter !=0:
+                tags_cloud[tag.name] = counter
+        print(tags_cloud)
+        tags_cloud_sorted = {k: v for k, v in sorted(tags_cloud.items(), key=lambda item: item[1],reverse=True)}
+
+        id_ = self.kwargs.get("pk")
+        obj = get_object_or_404(Article, id=id_)
+        context = {'object': obj, 
+        'tags': tags,
+        'tags_cloud':tags_cloud_sorted}
+        return render(request, "article.html", context) 
 
 class ArticleDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'article_delete.html'
