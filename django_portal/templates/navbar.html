@@ -7,27 +7,27 @@
         <button class="navbar-toggler d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
   <span class="navbar-toggler-icon"></span>
   </button>
-
-         <ul class="navbar-nav px-3">
+      <button class="btn btn-outline-secondary border-0 dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-user-circle"></i>
+              </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
 			{% if user.is_superuser %}
-			<li class="nav-item text-nowrap">
-				<a class="nav-link" href="/admin/">Admin</a>
-			</li>
+				<a class="dropdown-item" href="/admin/">Admin panel</a>
 			{% endif %}
 			{% if user.is_authenticated %}
     		<li class="nav-item text-nowrap">
-          <a class="nav-link" href="/logout/"><i class="fa fa-sign-out fa-lg"></i></a>
+          <a class="dropdown-item" href="/logout/">Sign-out</i></a>
 			</li>
 			{% elif not user.is_authenticated %}
 			<li class="nav-item text-nowrap">
-				<a class="nav-link" href="/login/">Login</a>
+				<a class="dropdown-item" href="/login/">Login</a>
 			</li>
    			{% endif %}
-  </ul>
+                                </div>
 
       <input type="text" name="q" class="form-control" placeholder="Search" >
       <div class="input-group-append">
-      <button class="btn btn-outline-secondary searchButton" type="submit"> 
+      <button class="btn btn-outline-secondary searchButton border-0" type="submit"> 
         <i class="fa fa-search"></i>
       </button>
       </div>

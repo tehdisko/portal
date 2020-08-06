@@ -25,7 +25,9 @@ class ArticleCreateView(LoginRequiredMixin, CreateView):
     queryset = Article.objects.all()
     login_url = '/login/'
     redirect_field_name = ''
-
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 class ArticleUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'article_create.html'
